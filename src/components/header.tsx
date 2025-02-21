@@ -2,10 +2,17 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/src/components/ui/button";
-import { NotepadText, Layout, LogOut, Earth } from 'lucide-react'; // Import des icônes
+import { NotepadText, Layout, LogOut, Earth } from 'lucide-react';
 
 export default function Header() {
     const router = useRouter();
+
+    const handleLogout = () => {
+        // Supprimer le cookie "userId" en le réinitialisant avec une date d'expiration passée.
+        document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        // Optionnel : rediriger vers la page de connexion ou rafraîchir la page.
+        router.push("/");
+    };
 
     return (
         <header className="w-full bg-white shadow-md p-4 flex justify-between items-center">
@@ -24,7 +31,7 @@ export default function Header() {
                     All surveys
                 </Link>
             </nav>
-            <Button onClick={() => router.push("/logout")} variant="destructive" className="flex items-center gap-2">
+            <Button onClick={handleLogout} variant="destructive" className="flex items-center gap-2">
                 <LogOut size={20} />
                 Log out
             </Button>

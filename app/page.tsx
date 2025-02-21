@@ -31,6 +31,9 @@ export default function Login() {
             // Waiting for response datas.
             const data = await response.json();
             console.log("Login successful:", data);
+
+            document.cookie = `userId=${data.userId}; path=/;`;
+
             router.push("/dashboard")
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "Erreur serveur.")

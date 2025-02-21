@@ -6,7 +6,7 @@ import { Button } from "@/src/components/ui/button";
 
 interface Survey {
     _id: string;
-    nom: string;
+    name: string;
 }
 
 export default function Dashboard() {
@@ -31,13 +31,13 @@ export default function Dashboard() {
 
     return (
         <div className="flex flex-col items-center p-6 md:p-10">
-            <h1 className="text-3xl font-bold mb-6">Dashboard - Vos Sondages</h1>
+            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
             <div className="w-full max-w-3xl grid gap-4">
                 {surveys.length > 0 ? (
                     surveys.map((survey) => (
                         <Card key={survey._id} className="w-full">
                             <CardHeader>
-                                <CardTitle>{survey.nom}</CardTitle>
+                                <CardTitle>{survey.name}</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <Button onClick={() => router.push(`/survey/${survey._id}`)}>
