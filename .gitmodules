@@ -1,0 +1,3 @@
+[submodule "api-next-survey"]
+	path = api-next-survey
+	url = https://github.com/adanlaldy/api-next-survey

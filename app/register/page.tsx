@@ -1,51 +1,56 @@
 'use client'
-import {LoginForm} from "@/src/components/login-form"
-import {useState} from "react";
-import {useRouter} from "next/navigation";
+import { RegisterForm } from "@/src/components/register-form"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function Login() {
+export default function Register() {
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
 
-    // Fonction pour gérer la soumission du formulaire
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        if (password !== confirmPassword) {
+            setError("Les mots de passe ne correspondent pas.");
+            return;
+        }
+
         try {
-            // Send POST login request with datas to the API.
-            const response = await fetch('http://127.0.0.1:3000/api/users/login', {
+            const response = await fetch('http://127.0.0.1:3000/api/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({name, password}), // Envoi des données JSON
+                body: JSON.stringify({ name, password }),
             });
 
             if (!response.ok) {
-                throw new Error('Identifiants incorrects.');
+                throw new Error('Échec de l\'inscription.');
             }
 
-            // Waiting for response datas.
             const data = await response.json();
-            console.log("Login successful:", data);
-            router.push("/dashboard")
+            console.log("Registration successful:", data);
+            router.push("/dashboard");
         } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Erreur serveur.")
+            setError(err instanceof Error ? err.message : "Erreur serveur.");
         }
     };
 
     return (
         <div className="flex min-h-screen w-full items-center justify-center p-6 md:p-10">
             <div className="w-full max-w-sm">
-                <LoginForm
+                <RegisterForm
                     onSubmit={handleSubmit}
                     nameValue={name}
                     passwordValue={password}
+                    confirmPasswordValue={confirmPassword}
                     setName={setName}
                     setPassword={setPassword}
+                    setConfirmPassword={setConfirmPassword}
                 />
                 {error && <div className="text-red-500">{error}</div>}
             </div>
