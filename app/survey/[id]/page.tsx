@@ -27,7 +27,7 @@ export default function SurveyDetailsPage() {
         try {
             const response = await fetch(`http://127.0.0.1:3000/api/users/${userId}`);
             if (!response.ok) {
-                throw new Error('Failed to fetch user details');
+                //throw new Error('Failed to fetch user details');
             }
             const user = await response.json();
             return user.name;

@@ -42,9 +42,11 @@ For the original project requirements, refer to the
 
 ### Backend Setup:
 
-1. Clone the repository:
+1. Clone the repository and enable submodule:
    ```bash
    git clone https://github.com/adanlaldy/next-survey.git
+   git submodule init
+   git submodule update
    cd next-survey/api-next-survey
    ```
 2. Install dependencies:
