@@ -18,10 +18,6 @@ export default function Header() {
         <header className="w-full bg-white shadow-md p-4 flex justify-between items-center">
             <p className="text-2xl font-bold flex items-center gap-2">Next survey</p>
             <nav className="flex gap-6">
-                <Link href="/dashboard" className="text-lg font-medium hover:underline flex items-center gap-2">
-                    <Layout size={20} />
-                    Dashboard
-                </Link>
                 <Link href="/my-surveys" className="text-lg font-medium hover:underline flex items-center gap-2">
                     <NotepadText size={20} />
                     My surveys

@@ -34,7 +34,7 @@ export default function Login() {
 
             document.cookie = `userId=${data.userId}; path=/;`;
 
-            router.push("/dashboard")
+            router.push("/my-surveys")
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "Erreur serveur.")
         }

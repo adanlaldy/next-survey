@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/src/components/ui/card';  // Import des composants ShadCN
 import Link from 'next/link';
-import { Button } from '@/src/components/ui/button'; // Import du bouton personnalisé
+import { Button } from '@/src/components/ui/button';
+import {useRouter} from "next/navigation"; // Import du bouton personnalisé
 
 interface Survey {
     _id: string;
@@ -13,10 +14,14 @@ interface Survey {
 export default function AllSurveys() {
     const [surveys, setSurveys] = useState<Survey[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const router = useRouter();
+
 
     useEffect(() => {
         const fetchSurveys = async () => {
             try {
+                const userId = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*=\s*([^;]*).*$)|^.*$/, "$1");
+                if (!userId) router.push('/')
                 const response = await fetch('http://127.0.0.1:3000/api/surveys');
                 const data = await response.json();
                 setSurveys(data);

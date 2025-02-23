@@ -34,7 +34,7 @@ export default function Register() {
 
             const data = await response.json();
             console.log("Registration successful:", data);
-            router.push("/dashboard");
+            router.push("/");
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "Erreur serveur.");
         }
